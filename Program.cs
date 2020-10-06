@@ -3,47 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
-namespace Queueusingint
+
+namespace regex
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Queue<int> MyQueue = new Queue<int>(); //queue object created
-
-            MyQueue.Enqueue(2);
-            MyQueue.Enqueue(4);
-            MyQueue.Enqueue(6);
-            MyQueue.Enqueue(8);
-            MyQueue.Enqueue(10);
-            MyQueue.Enqueue(12);
-            MyQueue.Enqueue(14);
-            MyQueue.Enqueue(16);
-            MyQueue.Enqueue(18);
-            MyQueue.Enqueue(20);
-
-            foreach (int DEX in MyQueue)
+            string test = "xxyy";
+            //match the start of a string
+            if (Regex.IsMatch(test, "^xx"))
             {
-                Console.WriteLine("Queue elements entered are : " + DEX);
-
+                Console.WriteLine("pattern matched at the start");
             }
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());//fifo?? access the element with first present
-            Console.WriteLine("peek element of the queue is : " + MyQueue.Peek());
-            Console.WriteLine("the current elements prsenet in the queue : " + MyQueue.Count());
+            //// Match the end of string 
+            if (Regex.IsMatch(test, "yy$"))
+            {
+                Console.WriteLine("pattern matched at the end");
+            }
+            Console.WriteLine();
+            Console.WriteLine("example2");
+            string num = "2800443553";
 
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-            Console.WriteLine("Elements left after applying DeQueue method : " + MyQueue.Dequeue());
-
-            Console.WriteLine("peek element of the queue is : " + MyQueue.Peek());
-            Console.WriteLine("the current elements prsenet in the queue : " + MyQueue.Count());
-
+            //match the start of a int
+            if (Regex.IsMatch(num, "^28"))
+            {
+                Console.WriteLine("pattern matched at the start");
+            }
+            //// Match the end of string 
+            if (Regex.IsMatch(num, "53$"))
+            {
+                Console.WriteLine("pattern matched at the end");
+            }
+            Console.ReadLine();
         }
     }
 }
