@@ -3,40 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
-
-namespace regex
+namespace generic
 {
-    class Program
+    class example<T>//class should contain type parameter
     {
+        T data;//parameter declared
+        //create a method for class example
+        public example(T check)//check is assigned to type parameter
+
+        {
+            this.data = check;
+        }
+        public void write()
+        {
+            Console.WriteLine("the value passed to the initializer is:" + this.data);
+        }
+    }
+
+    class generics_practice
+    {
+        //driver method
         static void Main(string[] args)
         {
-            string test = "xxyy";
-            //match the start of a string
-            if (Regex.IsMatch(test, "^xx"))
-            {
-                Console.WriteLine("pattern matched at the start");
-            }
-            //// Match the end of string 
-            if (Regex.IsMatch(test, "yy$"))
-            {
-                Console.WriteLine("pattern matched at the end");
-            }
-            Console.WriteLine();
-            Console.WriteLine("example2");
-            string num = "2800443553";
+            //use the generic type example with an integer or a string type parameter
+            //instantiating the class example
+            example<int> result = new example<int>(300);
+            example<string> result1 = new example<string>("prathyusha");
 
-            //match the start of a int
-            if (Regex.IsMatch(num, "^28"))
-            {
-                Console.WriteLine("pattern matched at the start");
-            }
-            //// Match the end of string 
-            if (Regex.IsMatch(num, "53$"))
-            {
-                Console.WriteLine("pattern matched at the end");
-            }
+
+            //invoking the method
+            result.write();
+            result1.write();
             Console.ReadLine();
         }
     }
