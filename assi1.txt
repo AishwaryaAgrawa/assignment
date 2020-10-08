@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace anoassign1
+{
+    public delegate void Anonymous1(string str,string str1);
+    class Program
+    {
+        public static void example1(string firstname,string lastname)
+        {
+            Console.WriteLine("Firstname Lastname");
+            Console.WriteLine(firstname + "\t\t" + lastname);
+        }
+    
+    
+        static void Main(string[] args)
+        {
+            Anonymous1 one = new Anonymous1(example1);
+            one.Invoke("aish", "warya");
+            Anonymous1 two = delegate (string firstname, string lastname)
+              {
+                  Console.WriteLine("Firstname\tLastname");
+                  Console.WriteLine(firstname + "\t\t" + lastname);
+              };
+            two.Invoke("gnana", "warya");
+            Console.ReadKey();
+
+
+        }
+    }
+}

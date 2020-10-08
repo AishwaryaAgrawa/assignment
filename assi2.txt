@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace anonymous2assign
+{
+    public delegate void Anonymous2(int a);
+    class Program
+    {
+        public static void evenchck(int number)
+        {
+            if(number%2==0)
+            {
+                Console.WriteLine("the given number {0} is even", number);
+            }
+            else
+            {
+                Console.WriteLine("the given number {0} is not even", number);
+            }
+        }
+        static void Main(string[] args)
+        {
+            Anonymous2 one = new Anonymous2(evenchck);
+            one.Invoke(10);
+            Anonymous2 two = delegate (int number)
+              {
+                  if (number % 2 == 0)
+                  {
+                      Console.WriteLine("the given number {0} is even", number);
+                  }
+                  else
+                  {
+                      Console.WriteLine("the given number {0} is not even", number);
+                  }
+
+              };
+            two.Invoke(5);
+            Console.ReadKey();
+        }
+    }
+}

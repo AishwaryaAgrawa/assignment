@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Anonymousassigment4
+{
+    public delegate void Anonymous4(int num);
+    class Program
+    {
+        public static void sumofdigits(int number)
+        {
+            int rem, sum=0;
+            while(number!=0)
+            {
+                rem = number % 10;
+                sum = sum + rem;
+                number = number / 10;
+
+            }
+            Console.WriteLine("the sum of digits is {0}", sum);
+        }
+        static void Main(string[] args)
+        {
+            Anonymous4 one = new Anonymous4(sumofdigits);
+            one.Invoke(4567);
+            Anonymous4 two = delegate (int number)
+              {
+                  int rem, sum = 0;
+                  while (number != 0)
+                  {
+                      rem = number % 10;
+                      sum = sum + rem;
+                      number = number / 10;
+
+                  }
+                  Console.WriteLine("the sum of digits is {0}", sum);
+              };
+            two.Invoke(12345);
+            Console.ReadKey();
+
+        }
+    }
+}

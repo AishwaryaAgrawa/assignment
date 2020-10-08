@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace anonymous3assign
+{
+    public delegate void Anonymous3(string str);
+    class Program
+    {
+        public static void stringlenth(string str)
+        {
+            int x = str.Length;
+            Console.WriteLine("the length of the string is {0}", x);
+        }
+        static void Main(string[] args)
+        {
+            Anonymous3 one = new Anonymous3(stringlenth);
+            one.Invoke("thankyou");
+            Anonymous3 two = delegate (string str)
+              {
+                  int x = str.Length;
+                  Console.WriteLine("the length of the string is {0}", x);
+              };
+            two.Invoke("fivestars");
+            Console.ReadKey();
+
+        }
+    }
+}
