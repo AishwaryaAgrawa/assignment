@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+
+namespace CSharpLambda
+{
+    class lambdaexpressions
+    {
+        static void Main(string[] args)
+        {
+            //list to store numbers
+
+            List<int> numbers = new List<int>() { 12, 24, 36, 48, 60, 72, 84, 96, 108, 120 };
+
+            Console.WriteLine("the elements of list are:");
+
+            foreach (var num in numbers)
+            {
+                Console.WriteLine("{0}", num);
+            }
+
+            Console.WriteLine();
+        
+
+            //Using lambda expressions to calculate square of each num in the list(x => x * x)
+
+            var square = numbers.Select(x => x * x);
+            var qube = numbers.Select(x => x * x * x);
+
+          foreach(var value in square)
+            {
+                Console.WriteLine("{0}", value);
+            }
+
+            Console.WriteLine();
+          foreach(var value in qube)
+            {
+                Console.WriteLine("{0}", value);
+            }
+            Console.ReadLine();
+          
+        }
+    }
+}

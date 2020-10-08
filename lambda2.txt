@@ -1,0 +1,56 @@
+using System;
+
+namespace CSharpLambda
+{
+    public delegate string GreetingDelegate(string str); // defined the delegate
+    class Program
+    {
+
+        public static string Greetings(string name)
+        {
+            return "Hello" + name + "very good afternoon";
+        }
+        static void Main(string[] args)
+        {
+                Console.WriteLine("Hello world");
+
+            GreetingDelegate obj = delegate (string name)
+            {
+                return "Hello" + name + "very good afternoon";
+            };
+            //instatiated the delegate
+                
+                string str = obj.Invoke("Girls");// invoke delegate method
+                Console.WriteLine(str);
+        }
+    }
+}
+
+
+
+
+//lambda operator
+
+using System;
+
+namespace CSharpLambda
+{
+    public delegate string GreetingDelegate(string str); // defined the delegate
+    class Program
+    {
+        static void Main(string[] args)
+        {
+                Console.WriteLine("Hello world");
+
+            GreetingDelegate obj = name => //lambda operator
+            {
+                return "Hello" + name + "very good afternoon";
+            };
+            //instatiated the delegate
+                
+                string str = obj.Invoke("Girls");// invoke delegate method
+                Console.WriteLine(str);
+            Console.ReadLine();
+        }
+    }
+}
