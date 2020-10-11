@@ -1,0 +1,1973 @@
+//LINQ
+
+
+
+//student ID
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LINQPROGRAM1
+{
+
+
+    
+    public class student
+    {
+        public int studentID { get; set; }
+        public string studentName { get; set; }
+        public string Age { get; set; }
+        public string StandardID { get; set; }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+
+		 //////Implement the LINQ on *Collection*
+            
+		IList<Student> studentList = new List<Student>()
+ 		{ 
+    			 new Student() { StudentID = 1, StudentName = "John", Age = 18, StandardID = 1 } ,
+   			 new Student() { StudentID = 2, StudentName = "Steve",  Age = 21, StandardID = 1 } ,
+   			 new Student() { StudentID = 3, StudentName = "Bill",  Age = 18, StandardID = 2 } ,
+    			 new Student() { StudentID = 4, StudentName = "Ram" , Age = 20, StandardID = 2 } ,
+    			 new Student() { StudentID = 5, StudentName = "Ron" , Age = 21 } 
+		};
+
+		IList<Standard> standardList = new List<Standard>() { 
+   			 new Standard(){ StandardID = 1, StandardName="Standard 1"},
+    			 new Standard(){ StandardID = 2, StandardName="Standard 2"},
+    			 new Standard(){ StandardID = 3, StandardName="Standard 3"}
+		};
+
+	       
+
+            
+
+
+            
+
+		//Applying LINQ Logic
+
+
+		
+
+		
+		//multiple where and select operator
+
+		var studentNames = studentList.Where(s => s.Age > 18)
+                              .Select(s => s)
+                              .Where(st => st.StandardID > 0)
+                              .Select(s => s.StudentName); 
+
+
+               //returning of anonymous object
+
+		var teenStudentsName = from s in studentList
+                       where s.age > 12 && s.age < 20
+                       select new { StudentName = s.StudentName };
+
+		teenStudentsName.ToList().ForEach(s => Console.WriteLine(s.StudentName));
+
+
+
+            
+
+            //execution_GroupBy 
+            var EmployeeGroupByBatch = from e in EmployeeList
+                                       group e by e.EmployeeID into sb
+                                       orderby sb.Key
+                                       select new { sb.Key, sb };
+
+
+            //query_Groupby 
+
+            var studentsGroupByStandard = from s in studentList
+                              group s by s.StandardID into sg
+                              orderby sg.Key 
+                                    select new { sg.Key, sg };
+
+
+			foreach (var group in studentsGroupByStandard)
+			{
+   				 Console.WriteLine("StandardID {0}:", group.Key);
+    
+  				  group.sg.ToList().ForEach(st => Console.WriteLine(st.StudentName ));
+			}
+
+           
+
+          //Outer Join
+            var studentWithStandard= from s in studentList
+                                 join s in studentList
+                                 on s.StandardID equals stad.StandardID 
+                                 into eg
+                                 select new
+                                 {
+                                     StudentName = s.StudentName 
+                                     student= eg
+                                 };
+
+
+
+	///inner join
+
+		var studentWithStandard = from s in studentList
+                          join stad in standardList
+                          on s.StandardID equals stad.StandardID 
+                          select new 
+				{ 
+                                  StudentName = s.StudentName, 
+                                  StandardName = stad.StandardName 
+                                };
+
+			studentWithStandard.ToList().ForEach(s => Console.WriteLine("{0} is in {1}", s.StudentName, s.StandardName  ));
+
+
+		
+
+
+            //Left Outer Join
+
+
+		var studentsGroup = from stad in standardList
+                    join s in studentList
+                    on stad.StandardID equals s.StandardID
+                        into sg
+                        select new { 
+                                        StandardName = stad.StandardName, 
+                                        Students = sg 
+                                    };
+
+			foreach (var group in studentsGroup)
+			{
+    				Console.WriteLine(group.StandardName);
+    
+   				 group.Students.ToList().ForEach(st => Console.WriteLine(st.StudentName));
+			}
+
+
+
+
+            
+
+
+            ////sorting
+
+
+		var sortedStudents = from s in studentList
+                        orderby s.StandardID, s.age
+                        select new 
+				{ 
+                                StudentName = s.StudentName, 
+                                Age = s.age, 
+                                StandardID = s.StandardID 
+				};
+
+				sortedStudents.ToList().ForEach(s => Console.WriteLine("Student Name: {0}, Age: {1}, StandardID: {2}", s.StudentName, s.Age , s.StandardID));
+
+
+
+
+
+            foreach (var group in EmployeeGroup)
+            {
+                Console.WriteLine(group.EmployeeName);
+                group.Employee.ToList().ForEach(et => Console.WriteLine(et.EmployeeName));
+            }
+
+
+                        Console.ReadKey();
+
+        }
+    }
+}
+
+
+
+
+
+
+
+//gen_ref2
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace genericclassex
+{
+    class Program1
+    {
+
+
+        class DataStore<T>
+        {
+            public DataStore(T msg)
+            {
+                Console.WriteLine(msg);
+            }
+        }
+
+
+
+        class GenericClass
+        {
+            public void Show<T>(T msg)
+            {
+                Console.WriteLine(msg);
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+
+		DataStore<string> strStore = new DataStore<string>();
+		strStore.Data = "Hello World!";//string
+
+		
+
+		DataStore<int> intStore = new DataStore<int>();
+		intStore.Data = 100;//int
+		
+
+		KeyValuePair<int, string> kvp1 = new KeyValuePair<int, string>();
+		kvp1.Key = 100;
+		kvp1.Value = "Hundred"; //int,string
+
+		KeyValuePair<string, string> kvp2 = new KeyValuePair<string, string>();
+		kvp2.Key = "IT";
+		kvp2.Value = "Information Technology"; //string,string
+
+	
+            
+        }
+
+
+
+    }
+}
+
+
+
+
+
+//reflections
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+ 
+  
+namespace Reflection  
+{  
+    internal class Car  
+    {  
+        //public variables  
+        
+	public string Color;  
+  
+        //private variables  
+        //String licensePlate; // e.g. "Californi 111 222"  
+        //double maxSpeed;     // in kilometers per hour  
+        //int startMiles; // Stating odometer reading   
+        //int endMiles; // Ending odometer reading   
+        //double gallons; // Gallons of gas used between the readings   
+  
+        //private vaiables  
+        private int _speed;  
+  
+        //Speed - read-only property to return the speed  
+        
+	public int Speed  
+        {  
+            get { return _speed; }  
+        }  
+  
+
+
+        //Accelerate - add mph to the speed 
+ 
+        public void Accelerate(int accelerateBy)  
+        {  
+            //Adjust the speed  
+            _speed += accelerateBy;  
+        }  
+  
+
+
+        //IsMoving - is the car moving? 
+ 
+        public bool IsMoving()  
+        {  
+            //Is the car's speed zero?  
+            if (Speed == 0)  
+            {  
+                return false;  
+            }  
+            else  
+            {  
+                return true;  
+            }  
+        }  
+  
+
+
+        //Constructor  
+        public Car()  
+        {  
+            //Set the default values  
+            Color = "White";  
+            _speed = 0;  
+        }  
+  
+
+
+
+        //Over loaded constructor  
+        public Car(string color, int speed)  
+        {  
+            Color = color;  
+            _speed = speed;  
+        }  
+
+
+        //methods  
+        public double calculateMPG(int startMiles, int endMiles, double gallons)  
+        {  
+            return (endMiles - startMiles) / gallons;  
+        }  
+
+  
+    }  
+}
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace reflectinassignment2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           Type t = typeof(System.String);
+            Console.WriteLine(t.Assembly);
+            Console.WriteLine(t.FullName);
+            Console.WriteLine(t.BaseType);
+            Console.WriteLine(t.IsClass);
+            Console.WriteLine(t.IsEnum);
+            Console.WriteLine(t.IsInterface);
+
+            Console.WriteLine("Constructors of {0} type...", t);
+            ConstructorInfo[] ci = t.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
+            foreach (ConstructorInfo c in ci)
+            {
+                Console.WriteLine(c);
+            }
+
+            Console.WriteLine("Methods of {0} type...", t);
+            MethodInfo[] cim = t.GetMethods(BindingFlags.Public | BindingFlags.Instance);
+            foreach(MethodInfo m in cim)
+            {
+                Console.WriteLine(m);
+            }
+
+            Console.WriteLine("Fields of {0} type...", t);
+            FieldInfo[] cif = t.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+            foreach (FieldInfo f in cif)
+            {
+                Console.WriteLine(f);
+            }
+
+            Console.ReadKey();
+
+        }
+    }
+}
+
+
+
+
+
+
+//Func, Action and Predicate
+
+//func
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace generic_delegates//func 
+{
+
+    public delegate double multnumsDelegate1(int x, int y, int z);
+    
+    class Program
+  {
+    static int Sum(int x, int y)
+    {
+        return x + y;
+    }
+
+    static void Main(string[] args)
+    {
+        Func<int,int, int> add = Sum;
+
+        int result = add(10, 10);
+
+        Console.WriteLine(result); 
+        Console.ReadLine();
+    }
+  }
+}
+
+
+
+//action
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace generic_delegates//action
+{
+
+	   static void ConsolePrint(int i)
+		{
+  		  Console.WriteLine(i);
+		}
+
+
+	static void Main(string[] args)
+		{
+  		  Action<int> printActionDel = ConsolePrint;//initialize action delegate directly
+		  ////Action<int> printActionDel = new Action<int>(ConsolePrint);
+  		  printActionDel(10);
+		}
+
+    
+}
+
+
+
+///predicate
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace generic_delegates//action
+{
+
+	   sstatic bool IsUpperCase(string str)
+		{
+ 		   return str.Equals(str.ToUpper());
+		}
+
+
+		static void Main(string[] args) //predicate delegate with anonymous method
+		{
+  			 Predicate<string> isUpper = IsUpperCase;//anonymous method
+
+   			 bool result = isUpper("hello world!!");//not uopercae----output = false
+
+  			 Console.WriteLine(result);//one input
+  			 Console.ReadLine();//boolean return type
+		}
+    
+                  ////predicate delegate with lambda expression
+
+                //static void Main(string[] args)
+		//	{
+  		//		  Predicate<string> isUpper = s => s.Equals(s.ToUpper());//lambda method
+   		//		 bool result = isUpper("hello world!!");
+		//	}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+////dictionary
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+
+namespace Dictionaryprog
+{
+    class GFG 
+  { 
+
+  
+
+        // Main Method  
+
+     static public void Main ()
+    { 
+
+        
+        Dictionary<int, string> My_dict1 = new Dictionary<int, string>();   // Creating a dictionary  using Dictionary<TKey,TValue> class 
+
+          My_dict1.Add(1123, "Introduction"); 
+
+          My_dict1.Add(1124, "to"); 
+
+          My_dict1.Add(1125, "C#_programming"); //Add() method
+
+            
+
+          foreach(KeyValuePair<int, string> ele1 in My_dict1) 
+
+          { 
+
+              Console.WriteLine("{0} and {1}", 
+
+                        ele1.Key, ele1.Value); 
+
+          } 
+
+          Console.WriteLine(); 
+
+            
+
+          // Creating another dictionary 
+
+         
+      Dictionary<string, string> My_dict2 =   
+
+              new Dictionary<string, string>()
+				{ 
+
+                                  	{"a.1", "Dog"}, 
+
+                                 	{"a.2", "Cat"}, 
+
+                                	{"a.3", "Pig"} 
+				};  
+
+           
+
+          foreach(KeyValuePair<string, string> ele2 in My_dict2) 
+
+          { 
+
+              Console.WriteLine("{0} and {1}", ele2.Key, ele2.Value); 
+              Console.ReadLine();
+
+          } 
+
+      } 
+  }
+
+}
+
+
+
+
+//Queue
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Queue1
+{
+    class Queue1
+    {
+        static void Main(string[] args)
+        {
+            Queue<string> strQ = new Queue<string>();
+
+            strQ.Enqueue(K);
+            
+            strQ.Enqueue(A);
+            
+            strQ.Enqueue(U);
+            
+            strQ.Enqueue(M);
+           
+            strQ.Enqueue(U);
+            
+	    strQ.Enqueue(D);
+            
+            strQ.Enqueue(I);
+           
+
+
+
+            Console.WriteLine("The elements in queue are:{0}",strQ.Count);
+            while (strQ.Count > 0)
+            {
+                Console.WriteLine(strQ.Dequeue());prints KAUMUDI
+            }
+
+	    Console.WriteLine("elements of queue are:{0}" + strQ.Count);
+            Console.ReadKey();
+        }
+    }
+}
+
+
+
+//delegate lambda,anonymous practice
+
+
+
+
+
+
+
+//delegate example
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using System.Linq;
+
+namespace delegateexample1
+{
+    	public delegate void Delegate_example2(string msg);
+
+   	 class Program
+	{
+   	 static void Main(string[] args)
+   	 	{
+       		 MyDelegate del = ClassA.MethodA;
+        	del("Hello World");
+
+        	del = ClassB.MethodB;
+        	del("Hello World");
+
+        	del = (string msg) => Console.WriteLine("Called lambda expression: " + msg);
+      		  del("Hello World");
+   	 	}
+	}
+
+	
+	class ClassA
+	{
+    	static void MethodA(string message)
+    		{
+        		Console.WriteLine("Called ClassA.MethodA() with parameter: " + message);
+                        Console.ReadLine();
+  	        }
+	}
+
+	
+
+
+	class ClassB
+	{
+    	static void MethodB(string message)
+   	 	{
+        		Console.WriteLine("Called ClassB.MethodB() with parameter: " + message);
+                        Console.ReadLine();
+  		}
+	}
+
+
+
+}
+
+
+
+
+
+//////window forms assignment 1
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Davangere";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+           
+
+            //b.Click += new EventHandler(button1_Click1);
+
+            //// try using delegate(anonymous method)
+
+            b.Click += delegate (object sender1, EventArgs e1)
+            {
+                System.Windows.Forms.MessageBox.Show("UBDT college of engineering!");
+            };
+
+            b.Click += delegate (object sender2, EventArgs e2)
+            {
+                System.Windows.Forms.MessageBox.Show("Electronics and Communication!");
+            };
+
+
+            b.Click += delegate (object sender3, EventArgs e3)
+            {
+                System.Windows.Forms.MessageBox.Show("2020_batch!");
+            };
+
+            b.Click += delegate (object sender4, EventArgs e4)
+            {
+                System.Windows.Forms.MessageBox.Show("Graduated");
+            };
+
+
+            b.Click += delegate (object sender5, EventArgs e5)
+            {
+                System.Windows.Forms.MessageBox.Show("yeyy! We are engineers now");
+            };
+
+
+        }
+
+
+        //private void button1_Click1(object sender1, EventArgs e1)
+
+        //{
+        //    MessageBox.Show("Corona Batch haha!!!");
+
+        //}
+
+
+    }
+}
+
+
+
+
+
+//////window forms assignment 2
+
+
+
+1.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("Koratagere!!");
+
+            };
+           
+        }
+    }
+}
+
+
+
+
+
+
+2.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("Crescent English School!");
+
+            };
+            
+        }
+    }
+}
+
+
+3.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("Tumkur!");
+
+            };
+            
+        }
+    }
+}
+
+
+
+4.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("Sarvodaya Education Trust!");
+
+            };
+           
+        }
+    }
+}
+
+
+
+5.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("Hyderabad");
+
+            };
+            
+        }
+    }
+}
+
+
+
+6.
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace anonymous_method_winform
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button b = new Button();
+            b.Text = "Click me!";
+            b.Size = new Size(100, 50);
+            b.Location = new Point(200, 200);//try to put in centre 
+            this.Controls.Add(b);
+
+            this.Controls.Add(b);//contolling mechanism of button shoould go the center
+
+
+            // show the message
+            //  b.Click += new EventHandler(button1_Click1);
+            //Delegate with Anonymous method
+            b.Click += delegate (object sender1, EventArgs e1)///we are just passing paramters here
+            {
+                MessageBox.Show("DXC_Technology-HP");
+
+            };
+           
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//operation_list
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace operationslist
+{
+
+
+
+    public class Author
+    {
+        // Auto-Initialized properties  
+        public string Name { get; set; }
+        public string Book { get; set; }
+        public double Price { get; set; }
+        public string AuthorDetails()
+        {
+            return string.Format("{0} is an author of {1}. Price: ${2}",
+                Name, Book, Price);
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello List!");
+            ListIntro();
+        }
+
+        public static void ListIntro()
+        {
+
+
+
+	//CREATE
+
+	
+            // 1.Create a List of int  
+            List<int> numbers = new List<int>(10) { 2,4,6,8,10,12,14,16,18,20 };
+
+
+
+       //ADD
+
+	    
+
+            // 2.Add more items to List  
+            numbers.Add(15);
+            numbers.Add(5);
+            numbers.Add(7);
+
+
+
+      //INSERT      
+
+            
+            // 3.Insert a collection     
+            numbers.InsertRange(5, new int[] { 11, 22, 33, 44, 55 });
+
+
+      //READ
+
+
+            //4. Read List items  
+            foreach (int num in numbers)
+            {
+                Console.Write($"{num}, ");
+            }
+
+            Console.WriteLine();
+
+            
+
+      //REMOVE
+
+            //5. remove
+               
+                {
+                    string s = "abc---def";
+                    //
+                    Console.WriteLine("Index: 012345678");
+                    Console.WriteLine("1)     {0}", s);
+                    Console.WriteLine("2)     {0}", s.Remove(3));
+                    Console.WriteLine("3)     {0}", s.Remove(3, 3));
+                }
+            
+
+
+      //CONTAINS
+
+
+		//6. contains
+
+            {
+
+                // 2.5 contains 
+                String str = "GeeksforGeeks";
+                String substr1 = "for";
+                String substr2 = "For";
+
+                // using String.Contains() Method 
+                Console.WriteLine(str.Contains(substr1));
+
+                // Here case-sensitive comparison 
+                // And substr2 value is 'For' 
+                // So its return false 
+                Console.WriteLine(str.Contains(substr2));
+            }
+
+            Console.WriteLine();
+
+        
+
+            Console.ReadKey();
+        }
+    }
+
+}
+
+
+
+
+
+/////pusp_pop_peek
+
+
+
+///push method
+
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DemoApplication
+{
+ class Program
+ {
+  static void Main(string[] args)
+  {
+   Stack st = new Stack();
+   st.Push(1);
+   st.Push(2);
+   st.Push(3);
+
+   foreach (Object obj in st)
+   {
+    Console.WriteLine(obj);
+   }
+    Console.WriteLine(); Console.WriteLine();
+    Console.WriteLine("The number of elements in the stack " +st.Count);
+    Console.WriteLine("Does the stack contain the elements 3 "+st.Contains(3));
+    Console.ReadKey();
+  }
+ }
+}
+
+
+
+
+
+//pop
+
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+  
+
+class pop1 { 
+
+  
+
+    // Main Method 
+
+    public static void Main() 
+
+    { 
+
+  
+
+        // Creating a Stack 
+
+        Stack myStack = new Stack(); 
+
+  
+
+        // Inserting the elements into the Stack 
+
+        myStack.Push("Geeks"); 
+
+        myStack.Push("Geeks Classes"); 
+
+        myStack.Push("Noida"); 
+
+        myStack.Push("Data Structures"); 
+
+        myStack.Push("GeeksforGeeks"); 
+
+  
+
+        Console.WriteLine("Number of elements in the Stack: {0}", myStack.Count); 
+
+                                                 
+
+  
+
+        // Retrieveing top element of Stack 
+
+        Console.Write("Top element of Stack is: "); 
+
+        Console.Write(myStack.Pop()); 
+
+  
+
+        
+
+        // after Pop operation 
+
+        Console.WriteLine("\nNumber of elements in the Stack: {0}",   myStack.Count); 
+
+                                                  
+
+    } 
+}
+
+
+
+
+
+
+
+//peek
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+  
+
+class peekex
+ { 
+
+ 
+       public static void Main() 
+
+    { 
+
+  
+
+        // Creating a Stack 
+
+        Stack myStack = new Stack(); 
+
+  
+
+        // Inserting the elements into the Stack 
+
+        myStack.Push("1st Element"); 
+
+        myStack.Push("2nd Element"); 
+
+        myStack.Push("3rd Element"); 
+
+        myStack.Push("4th Element"); 
+
+        myStack.Push("5th Element"); 
+
+        myStack.Push("6th Element"); 
+
+  
+
+        // Displaying the count of elements 
+
+        // contained in the Stack 
+
+        Console.Write("Total number of elements"+  " in the Stack are : "); 
+
+        Console.WriteLine(myStack.Count); 
+
+        Console.WriteLine("Element at the top is : "  + myStack.Peek()); 
+
+        Console.WriteLine("Element at the top is : " + myStack.Peek()); 
+
+        Console.Write("Total number of elements "+  "in the Stack are : "); 
+
+           Console.WriteLine(myStack.Count); 
+
+    }
+
+     Console.ReadKey(); 
+}
+
+
+
+
+
+
+///regex
+
+
+
+
+
+//C# program that uses Regex.Match
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace practice_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // Part 1: the input string.
+            string input = "/content/rekha-1.aspx";
+
+            // Part 2: call Regex.Match.
+            Match match = Regex.Match(input, @"content/([A-Za-z0-9\-]+)\.aspx$",
+                RegexOptions.IgnoreCase);
+
+            // Part 3: check the Match for Success.
+            if (match.Success)
+            {
+                // Part 4: get the Group value and display it.
+                string key = match.Groups[1].Value;
+                Console.WriteLine(key);
+                Console.ReadLine();
+            }
+        }
+    }
+}
+
+
+
+
+//C# program that uses IsMatch, start and end
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace practice3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string test = "kkrr";
+
+            // Match the start of a string.
+            if (Regex.IsMatch(test, "^kk"))
+            {
+                Console.WriteLine("START MATCHES");
+            }
+
+            // Match the end of a string.
+            if (Regex.IsMatch(test, "rr$"))
+            {
+                Console.WriteLine("END MATCHES");
+                Console.ReadLine();
+            }
+
+        }
+    }
+}
+
+
+
+
+//c# program that matches and parses a number
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        string input = "Dot Net 100 Perls";
+        Match match = Regex.Match(input, @"\d+");
+        if (match.Success)
+        {
+            int.TryParse(match.Value, out int number);
+            // Show that we have the numbers.
+            Console.WriteLine("NUMBERS: {0}, {1}", number, number + 1);
+        }
+    }
+}
+
+
+
+
+//C# program that uses NextMatch
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace practice4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string value = "1 AND 5";
+
+            // Step 1: get first match.
+            Match match = Regex.Match(value, @"\d");
+            if (match.Success)
+            {
+                Console.WriteLine(match.Value);
+            }
+
+            // Step 2: get second match.
+            match = match.NextMatch();
+            if (match.Success)
+            {
+                Console.WriteLine(match.Value);
+                Console.ReadLine();
+            }
+
+        }
+    }
+}
+
+
+
+//C# program that uses Replace, replaces with pattern
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace practice5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            // Replace 2 or more digit pattern with a string.
+            Regex regex = new Regex(@"\d+");
+            string result = regex.Replace("dog 123 456", "peacock");
+            Console.WriteLine("RESULT: {0}", result);
+            Console.ReadLine();
+
+        }
+    }
+}
+
+
+
+C# program that shows value, length, index
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+class Programex
+{
+    static void Main()
+    {
+        Match m = Regex.Match("123 Axxxxy", @"A.*y");
+        if (m.Success)
+        {
+            Console.WriteLine("Value  = " + m.Value);
+            Console.WriteLine("Length = " + m.Length);
+            Console.WriteLine("Index  = " + m.Index);
+	    Console.ReadLine();
+        }
+    }
+}
+
+
+
+
+//C# program that uses RegexOptions.IgnoreCase
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    static void Main()
+    {
+        const string value = "TEST";
+        // ... This ignores the case of the "TE" characters.
+        if (Regex.IsMatch(value, "te..", RegexOptions.IgnoreCase))
+        {
+            Console.WriteLine(true);
+            Console.ReadLine();
+        }
+    }
+}
+
+
+//C# program that uses non-greedy Regex
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+
+namespace p6
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string test = "/peacock/dog/";
+            // Version 1: use lazy (or non-greedy) metacharacter.
+            var result1 = Regex.Match(test, "^/.*?/");
+            if (result1.Success)
+            {
+                Console.WriteLine("NON-veg: {0}", result1.Value);
+            }
+            // Version 2: default Regex.
+            var result2 = Regex.Match(test, "^/.*/");
+            if (result2.Success)
+            {
+                Console.WriteLine("veg:     {0}", result2.Value);
+                Console.ReadLine();
+            }
+
+        }
+    }
+}
+
+
+
+//C# program that uses static Regex
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+
+class Program
+{
+    static void Main()
+    {
+        // The input string again.
+        string input = "/content/alternate-1.aspx";
+
+        // This calls the static method specified.
+        Console.WriteLine(RegexUtil.MatchKey(input));
+	Console.ReadLine();
+    }
+}
+
+static class RegexUtil
+{
+    static Regex _regex = new Regex(@"/content/([a-z0-9\-]+)\.aspx$");
+    /// <summary>
+    /// This returns the key that is matched within the input.
+    /// </summary>
+    static public string MatchKey(string input)
+    {
+        Match match = _regex.Match(input.ToLower());
+        if (match.Success)
+        {
+            return match.Groups[1].Value;
+        }
+        else
+        {
+            return null;
+        }
+    }
+}
+
+
+
+
+//example
+
+
+using System;  
+using System.Collections.Generic;  
+using System.Linq;  
+using System.Text;  
+using System.Text.RegularExpressions;  
+  
+namespace RegularExpression1  
+{  
+    class Program  
+    {  
+        static void Main(string[] args)  
+        {  
+            Regex r = new Regex(@"^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}");  
+            //class Regex Repesents an immutable regular expression.  
+  
+            string[] str = { "+91-9678967101", "9678967101", "+91-9678-967101", "+91-96789-67101", "+919678967101" };  
+            //Input strings for Match valid mobile number.  
+            foreach (string s in str)  
+            {  
+                Console.WriteLine("{0} {1} a valid mobile number.", s,  
+                r.IsMatch(s) ? "is" : "is not"); 
+                Console.ReadLine(); 
+               
+            }  
+        }  
+    }  
+}
+
+
+
+
+
+
+
+///threads
+
+
+//singlethread
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace singlethread1
+{
+
+    class mythreads
+
+    {
+
+
+
+        public static void method1()
+        {
+            Console.WriteLine("Method1 starts....");
+            for(int i = 0;i <= 50;i++)
+            {
+                 Console.WriteLine("Method1 " +i);
+            }
+            
+            Console.WriteLine("Method1 ends....");
+        }
+
+        
+    
+
+
+    
+        public static void method2()
+        {
+            Console.WriteLine("Method2 starts....");
+            for(int i = 0;i <= 5=;i++)
+            {
+                 Console.WriteLine("Method2 " +i);
+		 if(i == 25)
+                 {
+			Console.WriteLine("main thread is going to sleep......");
+                        Thread.Sleep(6000);
+			Console.WriteLine("main thread wokeup!");
+                 }
+            }
+            
+            Console.WriteLine("Method2 ends....");
+        }
+
+        
+
+
+	
+        public static void method3()
+        {
+            Console.WriteLine("Method3 starts....");
+            for(int i = 0;i <= 50;i++)
+            {
+                 Console.WriteLine("Method3 " +i);
+            }
+            
+            Console.WriteLine("Method3 ends....");
+        }
+
+
+
+
+
+
+
+    }
+	Console.ReadKey(); 
+
+
+      
+
+	  
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Main Thread Started");
+            mythreads obj = new mythreads();
+            double result = 0;
+
+            Thread T1 = new Thread(() => {result= obj.method1(); });
+
+            T1.Start();
+            T1.Join();
+
+            Console.WriteLine(result);
+            Console.WriteLine("thread 1 execution completed");
+            Console.WriteLine("----------------------------------------------------------------------------------");
+
+            string res = null;
+
+
+
+            Thread T2 = new Thread(() => { res=obj.method2(); });
+            
+            T2.Start();
+            T2.Join();
+
+            Console.WriteLine(res);
+            Console.WriteLine("thread 2 execution completed");
+            Console.WriteLine("----------------------------------------------------------------------------------");
+
+
+
+	    Thread T3 = new Thread(() => { res=obj.method3(); });
+            
+            T3.Start();
+            T3.Join();
+
+            Console.WriteLine(res);
+            Console.WriteLine("thread 3 execution completed");
+            Console.WriteLine("----------------------------------------------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Main Thread completed");
+            Console.ReadKey();
+
+
+        }
+    
+ 
+}
+
+
+
+
+
+
+//multithread
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+
+namespace ThreadingDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Method1();
+            Method2();
+            Method3();
+            Console.Read();
+        }
+        static void Method1()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("Method1 :" + i);
+            }
+        }
+        
+        static void Method2()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("Method2 :" + i);
+            }
+        }
+        static void Method3()
+        {
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine("Method3 :" + i);
+            }
+        }
+
+	
+		 Console.ReadKey();
+    }
+
+}
