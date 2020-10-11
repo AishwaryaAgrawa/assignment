@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace singlethreading
+{
+
+    class Mthreads
+
+    {
+	//method1
+        public static void Sum()
+        {
+            
+            for(int i = 0;i <= 20;i++)
+            {
+                 Console.WriteLine("Sum starts at " +i);
+            }
+            
+            Console.WriteLine("******Sum  ends at*****");
+        }
+
+          //method2 
+        public static void Multiple()
+        {
+            
+            for(int i = 0;i <= 5=;i++)
+            {
+                 Console.WriteLine("Multiple starts at " +i);
+		 if(i == 25)
+                 {
+			Console.WriteLine("main thread is going to sleep......");
+                        Thread.Sleep(1000000);
+			Console.WriteLine("main thread wokeup!");
+                 }
+            }
+            
+            Console.WriteLine("***********Multiple  ends at*****");
+        }
+
+        //method3	
+        public static void Division()
+        {
+    
+            for(int i = 0;i <= 50;i++)
+            {
+                 Console.WriteLine("Division starts at " +i);
+            }
+            
+            Console.WriteLine("*****Division ends at*****");
+        }
+
+    }
+	Console.ReadKey(); 
+

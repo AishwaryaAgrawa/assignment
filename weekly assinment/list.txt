@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace listoperations
+{
+
+    public class product
+    {
+          
+        public string Name { get; set; }
+        public string Brand { get; set; }
+        public double Price { get; set; }
+        public string productDetails()
+        {
+            return string.Format("{0} is Brand of {1}. Price: ${2}",
+                Name, Brand, Price);
+        }
+    }
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(" List!");
+            ListItems();
+        }
+
+        public static void ListItems()
+        {
+	
+            // 1.Create a List of int  
+            List<int> numbers = new List<int>(10) { 2,4,6,8,10,12,14,16,18,20 };
+     	    
+
+            // 2.Add more items to List  
+            numbers.Add(22);
+            numbers.Add(24);
+            numbers.Add(26);           
+
+            
+            // 3.Insert a collection     
+            numbers.InsertRange(5, new int[] { 5, 15, 25, 35, 45 });
+
+            //4. Read List items  
+            foreach (int num in numbers)
+            {
+                Console.Write($"{num}, ");
+            }
+
+            Console.WriteLine();
+ 
+
+            //5. remove items from list
+               
+                {
+                   string s = "Aishwarya";
+                    //
+                    Console.WriteLine("Index: 012345678");
+                    Console.WriteLine("1)     {0}", s);
+                    Console.WriteLine("2)     {0}", s.Remove(1));
+                    Console.WriteLine("3)     {0}", s.Remove(2, 2));
+                }
+       
+		//6. containing in the list
+
+            {
+              
+                String str = "DaybyDay";
+                String substr1 = "by";
+                String substr2 = "By";
+
+                // using String.Contains() Method 
+                Console.WriteLine(str.Contains(substr1));
+
+                //  case-sensitive comparison is done
+                // substr2 value is 'By' 
+               
+                Console.WriteLine(str.Contains(substr2));
+            }
+
+            Console.WriteLine();
+       
+            Console.ReadLine();
+        }
+    }
+
+}
