@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript demo</title>
+    <style type="text/css">
+    body
+    {
+    background-color:green;
+    }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        function f1() {
+            window.alert("Clicked the button");
+        }
+        function f2() {
+            document.getElementById('hid').innerHTML = "Hi my name is Aishwarya";
+        }
+        function f3() {
+            document.getElementById('img1').width = '200';
+        }
+
+        function changebackground() {
+            document.getElementById('body1').style.backgroundColor = 'red';
+        }
+        function hide() {
+            document.getElementById('hid').style.backgroundColor = "pink";
+        }
+
+
+    </script>
+    <h1>my name is aish</h1>
+
+    <h1 id='hid'>My Dog name is nancy</h1>
+    <h2 id='hid2'>Welcome to javascript</h2>
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/
+    <button type="button" onclick="f1()">clickme</button>
+    <button  onclick="f2()">clickme to change the content</button>
+    <button  onclick="f3()">clickme to change the image</button>
+    <button  onclick="changebackground()">click me to change background</button>
+    <button onclick="hide()">click me to change bacground hide</button>
+
+
+
+
+</body>
+</html>
+
+
+22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>java script example</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        var x = prompt("Please enter number", "");
+        if (x % 2 == 0) {
+            document.write("the given number is even");
+        }
+        else {
+            document.write("the given number is not even");
+        }
+
+        function myfunc() {
+            document.write("the value of x is " + x);
+        }
+        function myfunc1() {
+            document.getElementById('hd').style.fontSize='100px'
+        }
+    </script>
+    <h1 id="hd" style="font-size:50px">Hii good morning</h1>
+    <button onclick="myfunc()">click here</button>
+    <button onclick="myfunc1()">click here to change font size</button>
+
+</body>
+</html>
+
+333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>calculator</title>
+    <style>
+        #hid {
+            background-color:red;
+            align-content: center;
+            font-family: Calibri,Latin;
+            text-align: center;
+        }
+        .container 
+	{
+            padding: 25px;
+            background-color: green;
+        }
+        form 
+	{
+            border: 3px solid #f1f1f1;
+            margin-left:350px;
+            margin-right:400px;
+            margin-top:110px;
+            margin-bottom:210px;
+        }
+        #hid2
+	{
+            margin-top:120px;
+            text-align:center;
+            color:gold;
+        }
+        input[type=text] 
+	{
+            width: 70%;
+            margin: 7px 0;
+            padding: 15px 20px;
+            display: inline-block;
+            border: 3px solid green;
+            box-sizing: border-box;
+        }
+
+    </style>
+    </head>
+    <body id="hid">
+    <script type="text/javascript">
+
+        function add() 
+	{
+            var a = parseFloat(document.getElementById('n1').value);
+            var b = parseFloat(document.getElementById('n2').value);
+            document.getElementById('result').value = a + b;
+        }
+        function sub() 
+	{
+            var a = parseFloat(document.getElementById('n1').value);
+            var b = parseFloat(document.getElementById('n2').value);
+            document.getElementById('result').value = a - b;
+        }
+        function mul() 
+	{
+            var a = parseFloat(document.getElementById('n1').value);
+            var b = parseFloat(document.getElementById('n2').value);
+            document.getElementById('result').value = a * b;
+        }
+        function div() 
+	{
+            var a = parseFloat(document.getElementById('n1').value);
+            var b = parseFloat(document.getElementById('n2').value);
+            document.getElementById('result').value = a/b;
+        }
+
+    </script>
+    <h1 id="hid2">A SAMPLE CALCULATOR</h1>
+    <form action="" name="calculator">
+    <div class="container">
+            <label>number1</label>
+            <input type="text" name="num1" value="" id="n1" /><br />
+            <label>number2</label>
+            <input type="text" name="num2" value="" id="n2" />
+            <br />
+            <input type="button" value="Addition" onclick="add()" />
+            <input type="button" value="Substraction" onclick="sub()" />
+            <input type="button" value="Multiplication" onclick="mul()" />
+            <input type="button" value="Division" onclick="div()" /><br />
+            <label>Result</label>
+            <input type="text" value="" id="result" />
+    </div>
+    </form>
+
+
+</body>
+</html>
+
+444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444444
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p id="sample"></p>
+    <script>
+        var x = 1;
+        var y = 7;
+        var z = x + y;
+        document.getElementById("sample").innerHTML =
+            "The value of z is: " + z;
+
+        var name = "sruthi";
+        var salary = 2974.568;
+
+
+        window.alert("your name is" + name);
+        console.log("your salary is" + salary);
+
+        var a = 13;
+        var b = "7";
+        var c = a + b;
+        var d = "Jimin";
+        var e = a + b + c + d;
+        document.write("The value of a is" + a ,"<br>");
+        document.write("The value of b is" + b ,"<br>");
+        document.write("The value of c is" + c ,"<br>");
+        document.write("The value of d is" + d , "<br>");
+        document.write("The value of e is" + e, "<br>");
+
+
+        for (var i = 1; i <= 5; i++) {
+            document.write("The value of i is :" + i, "<br>");
+
+
+        }
+
+        var age = 22;
+
+        if (age > 18) {
+            alert("you can vote");
+        }
+
+        if (age < 16) {
+            alert("you cannot vote");
+        }
+            
+        var j = 13;
+        var i = 7;
+        var k = i + j;
+        document.write(a == b, "<br>");
+        document.write(a = b, "<br>");
+        document.write(a !== b, "<br>");
+
+
+    </script>
+
+
+
+</body>
+</html>
