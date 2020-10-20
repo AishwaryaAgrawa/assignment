@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Json Stringify</title>
+</head>
+<body>
+    <h2>Create JSON string from a JavaScript object</h2>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <script>
+        var details = { "name": "Aishwarya", "age": 24, "city": "Allahabad" };
+        var obj = JSON.stringify(details);
+        document.getElementById("demo").innerHTML = obj;
+        var obj1 = { name: "harsh", age: 30, city: "new zealand" };
+        var myJSON = JSON.stringify(obj1);
+        document.getElementById("demo1").innerHTML = myJSON;
+        //stringify javascript array
+        var friends = ["Jerry", "Samyu", "Neelu", "Vasantha"];
+        var x = JSON.stringify(friends);
+        document.getElementById("demo2").innerHTML = x;
+    </script>
+</body>
+</html>

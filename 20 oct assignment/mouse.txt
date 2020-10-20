@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<head>  
+		<title> My first webTab</title>
+	</head>
+<body>
+	<h1>Click on helloworld </h1>
+	<h1 onclick ="coffee(this)">hello world</h1>
+	<h2 onclick ="tea(this)">this is asihwarya</h1>
+	<h3 onclick ="milk(this)">hello how are you</h1>
+	<h4 onclick ="greentea(this)">how are u doin</h1>
+
+!--Function implementio-->
+<script>
+	function coffee(sachin){
+		sachin.innerHTML="welcome";
+	}
+	function tea(id){
+		id.innerHTML="we are learning java";
+	}
+	function milk(id){
+		id.innerHTML="java script found is easy";
+
+	}
+	function greentea(id){
+		id.innerHTML="welcome to the html and javascript";
+	}
+	function DispalyDate(){
+	
+		document.getElementById("Aishwarya").innerHTML=Date();
+	}
+function extraevent(colour){
+	colour.innerHTML="this crazy";
+}
+function extraevent2(colour)
+{
+	colour.innerHTML="Mouse over me";
+}
+function extraevent3(colour)
+{
+	colour.innerHTML="Mouse down";
+}
+function extraevent4(colour)
+{
+	colour.innerHTML="Mouse up";
+}
+
+</script>
+
+<p>The aaddEventListener wet button </p>
+<button id="white">Click me here</button>
+
+<script type="text/javascript">
+	document.getElementById("white").addEventListener("click",function(){
+	document.write("this is eventLister method example");
+});
+	
+</script>
+
+<script>
+	function example(){
+		document.write("baby");
+	}
+	document.getElementById("object").addEventListener("click",example);
+	
+</script>
+
+
+
+<p>This is an demo about the eventLister with the explicit function</p>
+<button id="object">click_yar</button>
+
+
+
+<p>Click thhe button to display the time and date </p>
+<button onclick="DispalyDate()">Click for a date info</button>
+<p id ="Aishwarya"></p>
+<div onmouseover="extraevent(this)" onmouseout="extraevent2(this)" onmousedown="extraevent3(this)" onmouseup="extraevent4(this)" 
+style ="background-color:cyan; width:80px; height:100px;padding :50px"></style>Show me up
+</div>
+</body>
+</html>

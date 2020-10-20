@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Page1</title>
+
+</head>
+<body>
+    <!--script 1-->
+    <script>
+        function e1(size) {
+            size.innerHTML = "DXC";
+        }
+        function e2(size) {
+            size.innerHTML = "TRAINING";
+        }
+        function e3(size) {
+            size.innerHTML = "FUN";
+        }
+        function e4(size) {
+            size.innerHTML = "VERY FUN";
+        }
+
+    </script>
+
+    <div onmouseover="e1(this)" onmouseout="e2(this)" onmousedown="e3(this)" onmouseup="e4(this)"
+         style="background-color:cyan;width:80px;height:100px;padding:50px">
+        show me up
+    </div>
+
+    <!--script 2-->
+    <h1 onclick="changeText(this)">Click on this text!</h1>
+    <script>
+        function changeText(id) {
+            id.innerHTML = "Ooops!";
+        }
+    </script>
+
+    <!--script 3-->
+    Enter your name: <input type="text" id="fname" onchange="myFunction()"><br><br>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("fname");
+            x.value = x.value.toUpperCase();
+        }
+    </script>
+
+    <!--script4-->
+    Enter your name: <input type="text" onfocus="myFunction(this)"><br ><br>
+    <script>
+        function myFunction(x) {
+            x.style.background = "yellow";
+        }
+    </script>
+
+    <!--script5-->
+    <button onclick="displayDate()">The time is?</button>
+
+    <script>
+        function displayDate() {
+            document.getElementById("demo").innerHTML = Date();
+        }
+    </script>
+
+    <p id="demo"></p>
+</body>
+</html>
