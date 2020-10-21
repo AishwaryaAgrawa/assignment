@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $("ol").remove();
+    });
+    $("#btn1").click(function () {
+        $("p").remove("#sweet");
+    });
+    $("#btn").click(function () {
+        $("td").empty();
+    });
+});
+    </script>
+    </head>
+<body>
+    <p>Welcome To DXC</p>
+    <p>This is Priscilla from DXC </p>
+    <p id="sweet"> JQuery is a java script library</p><br />
+    <p id="sweet">  Javascript is a scripting language</p>
+    <ol>
+
+        <li>orange</li>
+        <li>mango</li>
+        <li>Grapes</li>
+        <li>papaya</li>
+        <li>pineapple</li>
+        <li>apple</li>
+    </ol>
+    <table border="1">
+        <tr>
+            <th colspan="4">colors</th>
+        </tr>
+        <tr>
+            <td>orange </td>
+            <td>pink</td>
+            <td>yellow</td>
+            <td>green</td>
+
+        </tr>
+
+    </table>
+
+
+    <br>
+
+    <button>Remove</button>
+
+    <button id="btn">Empty</button>
+    <button id="btn1">Filter</button>
+
+
+
+
+</body>
+</html>
