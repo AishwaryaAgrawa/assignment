@@ -1,0 +1,78 @@
+<%@ Page Language="C#" %>
+
+<!DOCTYPE html>
+<script runat="server">
+
+    protected void TextBox2_TextChanged(object sender, EventArgs e)
+    {
+        data1.Text = TextBox2.Text;
+        
+        Response.Write("Your name is "+ data1.Text + "<br/>");
+
+    }
+
+    protected void TextBox3_TextChanged(object sender, EventArgs e)
+    {
+         data2.Text = TextBox3.Text;
+        Response.Write("Your age is " + data2.Text+ "<br/>");
+    }
+
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+         data3.Text = TextBox1.Text;
+        Response.Write("Your name is " + data3.Text+ "<br/>");
+
+    }
+
+
+    protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+    {
+         data4.Text= RadioButton1.Text;
+        Response.Write("You are" + data4.Text+ "<br/>");
+    }
+
+    protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+    {
+        data4.Text = RadioButton2.Text;
+        Response.Write("You are" + data4.Text+ "<br/>");
+    }
+</script>
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            
+            <h1>Inline Coding Example</h1>
+            <asp:Label  ID="label2" runat="server" Text="Name" ForeColor="#9900CC" BackColor="#FFFFCC" BorderColor="Black" BorderStyle="None" Font-Size="15px"/>
+            <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" style="margin-left: 21px" Width="169px" /><br /><br/>
+            <asp:Label  ID="label3" runat="server" Text="Age" ForeColor="#9900CC" BackColor="#FFFFCC" BorderColor="Black" BorderStyle="None" Font-Size="15px"/>
+            <asp:TextBox ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged" style="margin-left: 32px" Width="166px" /><br /><br/>
+            <asp:Label ID="label4" runat="server" Text="Gender" ForeColor="#9900CC" BackColor="#FFFFCC" BorderColor="Black" BorderStyle="None" Font-Size="15px"/><br />
+            <asp:RadioButton ID="RadioButton1" runat="server" Text="Male" GroupName="Gender" OnCheckedChanged="RadioButton1_CheckedChanged"/>
+            <br />
+            <asp:RadioButton ID="RadioButton2" runat="server" Text="Female" GroupName="Gender" OnCheckedChanged="RadioButton2_CheckedChanged"/>
+            <br />
+            <asp:Label ID="label1" runat="server" Text="YourCity " ForeColor="#9900CC" BackColor="#FFFFCC" BorderColor="Black" BorderStyle="None" Font-Size="15px"/>
+            <asp:TextBox ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" style="margin-left: 11px" Width="163px" /><br /><br/>
+       </div>
+        <p>
+            <asp:Button ID="b1" runat="server" Text="Submit"/>
+
+        </p>
+    </form>
+    User Entered Details:
+    <br />
+    <asp:Label ID="data1" runat="server" /><br />
+    <asp:Label ID="data2" runat="server" /><br />
+    <asp:Label ID="data3" runat="server" /><br />
+    <asp:Label ID="data4" runat="server" /><br />
+</body>
+</html>
