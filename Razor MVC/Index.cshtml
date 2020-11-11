@@ -1,0 +1,119 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1>Hello, This is  not razor syntax this is index view</h1>
+
+    </div>
+    <div>
+        <h1>This is aexample single razor expression</h1>
+        <h2>Hello, This is  razor syntax  view and implemented single line expresion</h2>
+        <label>Today's Date and Time is -- @DateTime.Now</label><br />
+        <label>Addition of 10 and 20 is:@(10 + 20)</label><br />
+        <label>Subtraction of 10 and 20 is:@(10 - 20)</label><br />
+        <label>Multiplication of 10 and 20 is:@(10 * 20)</label><br />
+        <label>Divison of 101 and 20 is:@(10 / 20)</label><br />
+    </div>
+    <p>This is a example multiline razor expression</p>
+    <div>
+        @*Inorder to work wit razor multiline exprssion the syntax is*@
+        @{
+            var a = 10;
+            var b = 20;
+            var c = a + b;
+            var Name = "My name is Hari";
+            var job = "I am a .NET Trainee";
+            var ColorsList = new List<string>() { "white", "Orange", "Maroon" };
+            var NumberList = new List<int>() { 1, 2, 4, 5, 67 };
+        }
+
+
+    </div>
+    <div>
+        <label>Addition of 10 and 20 is @(c) </label><br />
+        <label>@Name</label><br />
+        <label>@job</label><br />
+        <label>List of Colors:@ColorsList</label><br />
+        <label>List of Numbers:@NumberList.FirstOrDefault() </label>
+    </div>
+    <div>
+        @foreach(var item in ColorsList)
+        {
+        <h1>List of Colors:@item </h1>
+        }
+    </div>
+    <div>
+        <h1>Escape Sequence in razor view engine</h1>
+        <div>haritha51298@gmail.com</div>
+        <label>My Email addres--@@haritha51298@gmail.com</label>
+    </div>
+    <div>
+        @{
+            var variable = true;
+        }
+    </div>
+    <div>
+        @if (variable)
+        {
+            <H2>Hello,This is if block</H2>
+        }
+
+    </div>
+    <div>
+        @{
+            var variable1 = 11;
+        }
+    </div>
+    <div>
+        @if (variable1 % 2 == 0)
+        {
+            <H2>Hello,This is if block</H2>
+            <h2>The number is even</h2>
+        }
+        else if (variable1 % 2 == 1)
+        {
+            <h2>The 10 is odd</h2>
+        }
+        else
+        {
+            <h2>This is else block</h2>
+        }
+    </div>
+    <div>
+        @{
+            var variable2= 3;
+            var is_true = true;
+        }
+    </div>
+    <div>
+        @if (variable2 == 1)
+        {
+            <H2>Hello,This is if block</H2>
+            <h2>The number is even</h2>
+        }
+        else if (variable2 == 2)
+        {
+            <h2>The 10 is odd</h2>
+        }
+        else
+        {
+            <h2>This is else block</h2>
+        }
+        <div>
+            @(variable2==3 ?"Number is equal to 3":"number is not equal to 3")
+           @(is_true == true ? "Condition is true": "Condition is not true")
+        </div>
+        <h2>Loops in RAZOR</h2>
+
+    </div>
+</body>
+</html>
