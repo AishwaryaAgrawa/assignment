@@ -1,0 +1,52 @@
+create database OnlineTestDB
+
+use OnlineTestDB
+
+create table Admin
+(
+  Admin_Id int primary key identity(1,1),
+  Admin_Name varchar(20),
+  Password varchar(20)
+)
+
+insert into Admin values ('admin','admin')
+
+create table UserTable
+(
+  User_Id int primary key identity(1,1),
+  User_Name varchar(20),
+  User_Email varchar(30),
+  User_Password varchar(10),
+  Gender char(1),
+  Contact_Number int
+)
+
+create table Test
+(
+ Test_Id int primary key identity(1,1),
+ Test_Name varchar(20),
+ Test_Description varchar(30),
+ Test_Marks int,
+ Test_PassMarks int 
+)
+
+create table Question
+(
+  Question_Id int primary key identity(1,1),
+  Question_Name varchar(100),
+  Option_one varchar(10),
+  Option_two varchar(10),
+  Option_three varchar(10),
+  Option_four varchar(10),
+  Question_Answer varchar(10),
+  Test_Name varchar(30)
+)
+
+create Table Result
+(
+  Result_Id int primary key identity(1,1),
+  Result_Status varchar(10),
+  Score int,
+  User_name varchar(20),
+  Test_Id int
+)
